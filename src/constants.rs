@@ -12,6 +12,7 @@ pub const POOL_INIT_CODE_HASH: B256 =
 pub enum FeeAmount {
     LOWEST = 100,
     LOW = 500,
+    PANCAKEMEDIUM = 2500,
     MEDIUM = 3000,
     HIGH = 10000,
 }
@@ -22,6 +23,7 @@ impl FeeAmount {
         match self {
             Self::LOWEST => 1,
             Self::LOW => 10,
+            Self::PANCAKEMEDIUM => 50,
             Self::MEDIUM => 60,
             Self::HIGH => 200,
         }
@@ -33,6 +35,7 @@ impl From<u32> for FeeAmount {
         match fee {
             100 => Self::LOWEST,
             500 => Self::LOW,
+            2500 => Self::PANCAKEMEDIUM,
             3000 => Self::MEDIUM,
             10000 => Self::HIGH,
             _ => panic!("Invalid fee amount"),
@@ -45,6 +48,7 @@ impl From<i32> for FeeAmount {
         match tick_spacing {
             1 => Self::LOWEST,
             10 => Self::LOW,
+            50 => Self::PANCAKEMEDIUM,
             60 => Self::MEDIUM,
             200 => Self::HIGH,
             _ => panic!("Invalid tick spacing"),
